@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NZWalks.API.Application.Services;
 using NZWalks.API.Data;
 using NZWalks.API.Mappings;
 using NZWalks.API.Repositories;
@@ -47,10 +48,14 @@ builder.Services.AddDbContext<NZWalksDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalksConnectionString")));
 builder.Services.AddDbContext<NZWalksAuthDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalksAuthConnectionString")));
+builder.Services.AddDbContext<IptsdbContext>(options =>
+	options.UseSqlServer(builder.Configuration.GetConnectionString("IPTSConnectionString")));
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
+builder.Services.AddScoped<IDateConstantAppService, DateConstantAppService>();
+builder.Services.AddScoped<IHoldDateAppService, HoldDateAppService>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 builder.Services.AddIdentityCore<IdentityUser>()

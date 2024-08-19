@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Migrations\IPTSDb\" />
   </ItemGroup>
 
 </Project>
